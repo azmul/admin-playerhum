@@ -22,7 +22,7 @@ import {
   Alert,
   Divider,
 } from "antd";
-import * as BlogApi from "./BlogApi";
+import * as NewsApi from "./NewsApi";
 import useTranslation from "next-translate/useTranslation";
 import ImageUploader from "../imageUploader";
 import { useSelector } from "react-redux";
@@ -135,8 +135,8 @@ export default function Blog() {
       values.last_updated_by = profile?.name;
 
       create
-        ? await BlogApi.createItem(values)
-        : await BlogApi.updateItem(item?._id, values);
+        ? await NewsApi.createItem(values)
+        : await NewsApi.updateItem(item?._id, values);
 
       message.success({
         content: `${create ? "Created" : "Updated"} Sucessfully`,
@@ -163,7 +163,7 @@ export default function Blog() {
     setImageData([]);
     try {
       setloading(true);
-      const item: any = await BlogApi.getItem(id);
+      const item: any = await NewsApi.getItem(id);
       form.setFieldsValue({
         title: item.title,
         title_local: item.title_local,
@@ -173,10 +173,8 @@ export default function Blog() {
         content_items: item.content_items,
         admin_message: item.admin_message,
         like_count: item.like_count,
-        product_url: item.product_url,
         is_active: item.is_active,
         comment: item.comment,
-        product_url_text: item.product_url_text,
       });
 
       setItem(item);
@@ -216,17 +214,15 @@ export default function Blog() {
       content_items: [],
       admin_message: null,
       like_count: null,
-      product_url: null,
       is_active: true,
       comment: null,
-      product_url_text: null,
     });
   };
 
   const confirm = async () => {
     try {
       setloading(true);
-      await BlogApi.deleteItem(item?._id);
+      await NewsApi.deleteItem(item?._id);
       setVisible(false);
       getItems(params);
     } catch (error: any) {
@@ -280,7 +276,7 @@ export default function Blog() {
     try {
       setItemComments([]);
       setLoadingComment(true);
-      await BlogApi.updateCommentItem(item._id, {
+      await NewsApi.updateCommentItem(item._id, {
         id: comment.id,
         isDeleted: true,
       });
@@ -321,7 +317,7 @@ export default function Blog() {
 
       try {
         setloading(true);
-        const response: any = await BlogApi.getItems({ ...query });
+        const response: any = await NewsApi.getItems({ ...query });
         setItems(response?.data);
         setpagination(response?.pagination);
       } catch (error: any) {
@@ -349,7 +345,7 @@ export default function Blog() {
 
   return (
     <Card
-      title="Blogs List"
+      title="News List"
       extra={
         <Button type="primary" onClick={() => handleCreate(true)}>
           Create New
@@ -357,7 +353,7 @@ export default function Blog() {
       }
     >
       <Drawer
-        title={create ? "Create Blog" : `Update Blog #${item?.id}`}
+        title={create ? "Create News" : `Update News #${item?.id}`}
         placement="right"
         onClose={closeDrawer}
         visible={visible}
@@ -387,12 +383,6 @@ export default function Blog() {
               name="like_count"
               rules={[{ required: true, message: "Please give like_count" }]}
             >
-              <Input />
-            </Form.Item>
-            <Form.Item label="Product Url Text" name="product_url_text">
-              <Input />
-            </Form.Item>
-            <Form.Item label="Product Url" name="product_url">
               <Input />
             </Form.Item>
             <Form.Item name="is_active">

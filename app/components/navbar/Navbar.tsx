@@ -49,14 +49,14 @@ export default function Navbar() {
               <a onClick={()=>router.push('/question')}><b>Questions</b></a>
             </Menu.Item>
           </SubMenu>
-          <Menu.Item key="customers" icon={<UsergroupAddOutlined />}>
-            <a onClick={()=>router.push('/customers')}><b>Customers</b></a>
-          </Menu.Item>
           <Menu.Item key="messages" icon={<CommentOutlined />}>
             <a onClick={()=>router.push('/messages')}><b>Messages</b></a>
           </Menu.Item>
           <Menu.Item key="blog" icon={<InsertRowAboveOutlined />}>
             <a onClick={()=>router.push('/blog')}><b>Blogs</b></a>
+          </Menu.Item>
+          <Menu.Item key="news" icon={<InsertRowAboveOutlined />}>
+            <a onClick={()=>router.push('/news')}><b>News</b></a>
           </Menu.Item>
           <SubMenu key="settings" icon={<PicLeftOutlined />} title={<b>{t("navbar:settings")}</b>}>
             <Menu.Item key="slider">

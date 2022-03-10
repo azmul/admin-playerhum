@@ -13,7 +13,6 @@ const PRODUCTS = API + "/products";
 const PATIENT = API + "/patient";
 const MESSAGES = API + "/messages";
 const ORDERS = API + "/orders";
-const CUSTOMERS = API + "/users";
 const SETTING = API + "/setting";
 const BLOG = API + "/blog";
 const REVIEW = API + "/review";
@@ -22,6 +21,7 @@ const QUESTION = API + "/question";
 const CRICKET_PLAYER = API + "/cricket/player";
 const FOOTBALL_PLAYER = API + "/football/player";
 const CLUB = API + "/club";
+const NEWS = API + "/news";
 
 /**
  * Enum with all api endpoints
@@ -39,7 +39,6 @@ export const Endpoints = Object.freeze({
   PATIENT: PATIENT,
   MESSAGES: MESSAGES,
   ORDERS: ORDERS,
-  CUSTOMERS: CUSTOMERS,
   SETTING: SETTING,
   BLOG: BLOG,
   REVIEW: REVIEW,
@@ -54,6 +53,7 @@ export const Endpoints = Object.freeze({
   CRICKET_PLAYER: CRICKET_PLAYER,
   FOOTBALL_PLAYER: FOOTBALL_PLAYER,
   CLUB: CLUB,
+  NEWS: NEWS,
 });
 
 /**
